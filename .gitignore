@@ -165,3 +165,4 @@ migrations/
 
 .ipynb
 .DS_Store
+parsing/.DS_Store
