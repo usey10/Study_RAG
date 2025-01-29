@@ -5,5 +5,5 @@ def retrieve_document(state: GraphState) -> GraphState:
     print("---RETRIEVE---")
     questions = state["question"]
     documents = retriever.invoke(questions)
-    # print(documents)
+    print(documents)
     return {"context": documents, "question": questions}

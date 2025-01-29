@@ -5,5 +5,6 @@ from langgraph.graph.message import add_messages
 class GraphState(TypedDict):
     question: Annotated[str, "Question"]
     context: Annotated[str, "Context"]
+    rerank_context : Annotated[str, "Context"]
     answer: Annotated[str, "Answer"]
     message: Annotated[list, add_messages]
