@@ -1,4 +1,4 @@
-# query_merge.py
+# querymerge.py
 from state import GraphState
 
 

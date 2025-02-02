@@ -1,7 +1,7 @@
-# multiQueryretreive.py
+# multiQueryretrieve.py
 from state import GraphState
 from ingestion import retriever
-from node.multiquery import llm_chain
+from node.multiQuery import llm_chain
 
 from langchain.retrievers.multi_query import MultiQueryRetriever
 

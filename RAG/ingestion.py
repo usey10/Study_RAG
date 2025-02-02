@@ -14,6 +14,8 @@ from tokenizer import kiwi_tokenize
 
 load_dotenv()
 
+print("질문 환경 설정 중...")
+
 if not os.environ.get("OPENAI_API_KEY"):
   os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter API key for OpenAI: ")
 
@@ -52,3 +54,5 @@ ensemble_retriever = EnsembleRetriever(
     retrievers=[retriever, bm25_retriever],
     weights=[0.5, 0.5]  # Dense와 BM25 각각 50% 가중치
 )
+
+print("환경 설정 완료!")
