@@ -8,6 +8,7 @@ class GraphState(TypedDict):
     ensemble_context: Annotated[str, "Ensemble Retrieve"]
     multi_context: Annotated[str, "Multi Query"]
     merge_context: Annotated[str, "Merge Context"]
+    filtered_context: Annotated[str, "Filtering Context"]
     # context: Annotated[str, "Context"]
     rerank_context : Annotated[str, "Context"]
     answer: Annotated[str, "Answer"]

@@ -18,7 +18,7 @@ def rerank_with_cohere(query, retrieved_docs, top_n=5):
 def rerank_docs(state: GraphState) -> GraphState:
     print("---RERANK---")
     questions = state['question']
-    documents = state['merge_context']
+    documents = state['filtered_context']
     reranked_docs = rerank_with_cohere(questions, documents)
     # print(reranked_docs)
     return {"rerank_context": reranked_docs}

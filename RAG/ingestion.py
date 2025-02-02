@@ -11,6 +11,7 @@ from langchain.retrievers import EnsembleRetriever
 from kiwipiepy import Kiwi
 import cohere
 from tokenizer import kiwi_tokenize
+from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 
@@ -39,9 +40,10 @@ retriever = vector_store.as_retriever(
   search_type="similarity", search_kwargs={"k": 10},
 )
 
+# reranker
 cohere_client = cohere.Client(cohere_api)
 
-# === 1. BM25Retriever와 Kiwi 로드 ===
+# BM25Retriever와 Kiwi Load
 with open("data/bm25_retriever_r50.pkl", "rb") as f:
     # bm25_retriever = pickle.load(f)
     bm25_retriever = dill.load(f)
@@ -49,10 +51,13 @@ with open("data/bm25_retriever_r50.pkl", "rb") as f:
 
 bm25_retriever.preprocess_func = kiwi_tokenize
 
-# === 3. Ensemble Retriever 생성 ===
+# Ensemble Retriever
 ensemble_retriever = EnsembleRetriever(
     retrievers=[retriever, bm25_retriever],
     weights=[0.5, 0.5]  # Dense와 BM25 각각 50% 가중치
 )
+
+# filter model load
+filter_embedding_model = SentenceTransformer("jhgan/ko-sbert-sts")
 
 print("환경 설정 완료!")

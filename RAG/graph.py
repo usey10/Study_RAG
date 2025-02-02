@@ -8,7 +8,7 @@ from node.retrieve import ensemble_document
 from node.multiQuery import generate_transformed_queries
 from node.multiQueryRetrieve import multiquery_retrieve
 from node.queryMerge import merge_results
-
+from node.documentFilter import filter_document
 from node.rerank import rerank_docs
 from state import GraphState
 
@@ -20,6 +20,7 @@ workflow.add_node("ensemble retrieve", ensemble_document)
 workflow.add_node("multi query generate", generate_transformed_queries)
 workflow.add_node("multi query retrieve", multiquery_retrieve)
 workflow.add_node("merge retrieve", merge_results)
+workflow.add_node("filter", filter_document)
 workflow.add_node("rerank", rerank_docs)
 workflow.add_node("generate", generate)
 
@@ -42,7 +43,8 @@ workflow.add_conditional_edges(
     "multi query retrieve", check_conditions, ["merge retrieve"]
 )
 
-workflow.add_edge("merge retrieve", "rerank")
+workflow.add_edge("merge retrieve", "filter")
+workflow.add_edge("filter", "rerank")
 workflow.add_edge("rerank", "generate")
 workflow.add_edge("generate", END)
 
