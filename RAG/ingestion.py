@@ -26,7 +26,7 @@ cohere_api = os.environ["COHERE_API_KEY"]
 # vectorstore load
 pc = Pinecone(api_key=pinecone_api)
 
-index_name = "r50"
+index_name = "canon"
 index = pc.Index(index_name)
 
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")

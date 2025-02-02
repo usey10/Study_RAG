@@ -8,11 +8,11 @@ from state import GraphState
 def generate(state: GraphState) -> Dict[str, Any]:
     print("---GENERATE---")
     question = state["question"]
-    context = state["context"]
+    context = state["rerank_context"]
 
     generation = generation_chain.invoke({"context": context, "question": question})
     # print(f"question:{question}")
     # print(f"context:{context}")
     # print(f"generation:{generation}")
     message = [{"role": "user", "content": question},{"role":"assistant", "content":generation}]
-    return {"context": context, "question": question, "answer": generation, "message": message}
+    return {"question": question, "answer": generation, "message": message}
